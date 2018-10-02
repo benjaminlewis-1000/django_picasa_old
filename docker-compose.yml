@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+
+  db_django:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - traefik_default
+
+  web_djangoapp:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+#    ports:
+#      - "8000:8000"
+    depends_on:
+      - db_django
+    labels:
+      - "traefik.backend=web_djangoapp"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:tagger.${DOMAINNAME}"
+      - "traefik.port=8000"
+    networks:
+      - traefik_default
+
+  redis_django:
+    restart: always
+    image: redis:latest
+    expose:
+      - "6379"
+    networks:
+      - traefik_default
+
+networks:
+  traefik_default:
+    external: true
