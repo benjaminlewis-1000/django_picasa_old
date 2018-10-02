@@ -18,8 +18,11 @@ services:
       - .:/code
 #    ports:
 #      - "8000:8000"
+    expose:
+      - "8000"
     depends_on:
       - db_django
+      - redis_django
     labels:
       - "traefik.backend=web_djangoapp"
       - "traefik.enable=true"
