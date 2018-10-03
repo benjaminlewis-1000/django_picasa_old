@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'composeexample.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.path.join(BASE_DIR, 'postgres'),
+        'NAME': os.path.join(BASE_DIR, 'database'),
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'db_django',
