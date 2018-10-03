@@ -1,2 +1,3 @@
 database/*
+composeexample/__pycache__/*
 *.pyc

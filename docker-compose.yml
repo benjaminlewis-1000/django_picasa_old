@@ -3,21 +3,23 @@ version: '3'
 services:
 
   db_django:
-    image: postgres
+    image: postgres:10.1-alpine
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      PGDATA: /database
+#      PGDATA: /database
     networks:
       - traefik_default
     volumes:
-      - ./database:/database
-
+      - ./database:/var/lib/postgresql/data
+    labels:
+      - "user=postgres"
 
   web_djangoapp:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
+#     command: python3 /code/manage.py migrate --noinput
     volumes:
       - .:/code
 #    ports:
@@ -25,8 +27,11 @@ services:
     expose:
       - "8000"
     depends_on:
+    # The services that should be started before this one
       - db_django
       - redis_django
+    environment:
+      - SECRET_KEY=changemeinprod
     labels:
       - "traefik.backend=web_djangoapp"
       - "traefik.enable=true"
