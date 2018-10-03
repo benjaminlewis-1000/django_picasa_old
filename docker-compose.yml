@@ -8,8 +8,12 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      PGDATA: /database
     networks:
       - traefik_default
+    volumes:
+      - ./database:/database
+
 
   web_djangoapp:
     build: .
