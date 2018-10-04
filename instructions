@@ -1,0 +1,3 @@
+-Run postgres database: docker-compose run db_django postgres
+-Log in as postgres user: docker exec -it -u postgres afb8  /bin/bash
+-- Run psql. The command \l lists the databases: postgres database seems to be in order.
