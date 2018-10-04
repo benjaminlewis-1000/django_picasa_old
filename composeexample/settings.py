@@ -25,7 +25,7 @@ SECRET_KEY = 'zn8szz@pyb8s(#5%!tswcpz@e6%4((x5ra2a42ml63#3ljv9-a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tagger.exploretheworld.tech']
+ALLOWED_HOSTS = ['djangotest.exploretheworld.tech']
 # ALLOWED_HOSTS = ['*']
 
 

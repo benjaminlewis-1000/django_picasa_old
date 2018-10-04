@@ -35,7 +35,7 @@ services:
     labels:
       - "traefik.backend=web_djangoapp"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:tagger.${DOMAINNAME}"
+      - "traefik.frontend.rule=Host:djangotest.${DOMAINNAME}"
       - "traefik.port=8000"
     networks:
       - traefik_default
