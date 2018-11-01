@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tagger.apps.TaggerConfig',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'composeexample.urls'
+
+FILE_PATH_FIELD_DIRECTORY='/images'
 
 TEMPLATES = [
     {

@@ -12,7 +12,7 @@ services:
     networks:
       - traefik_default
     volumes:
-      - ./database:/var/lib/postgresql/data
+      - /mnt/data/appdata/tagger/database:/var/lib/postgresql/data
     labels:
       - "user=postgres"
 
@@ -22,6 +22,7 @@ services:
 #     command: python3 /code/manage.py migrate --noinput
     volumes:
       - .:/code
+      - /mnt/data/samba_share/Photos:/images
 #    ports:
 #      - "8000:8000"
     expose:

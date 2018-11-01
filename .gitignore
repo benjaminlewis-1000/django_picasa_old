@@ -1,3 +1,5 @@
 *.pyc
+*.swp
+core
 composeexample/__pycache__/*
 database/*
