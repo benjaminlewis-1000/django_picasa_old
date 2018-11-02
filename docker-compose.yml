@@ -23,6 +23,7 @@ services:
     volumes:
       - .:/code
       - /mnt/data/samba_share/Photos:/images
+      - /mnt/data/samba_share/exclude/tagger_subset:/validation_imgs
 #    ports:
 #      - "8000:8000"
     expose:
