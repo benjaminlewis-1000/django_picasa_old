@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('filename', models.FilePathField(match='\\.[j|J][p|P][e|E]*[g|G]$', max_length=255, path='/images')),
                 ('width', models.IntegerField()),
                 ('height', models.IntegerField()),
-                ('directory', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tagger.Directory')),
+                ('directory', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='filepopulator.Directory')),
             ],
         ),
     ]

@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tagger', '0006_auto_20181101_1714'),
+        ('filepopulator', '0006_auto_20181101_1714'),
     ]
 
     operations = [
