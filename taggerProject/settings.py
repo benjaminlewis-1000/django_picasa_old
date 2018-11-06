@@ -28,6 +28,19 @@ DEBUG = False #True
 ALLOWED_HOSTS = ['tagger.exploretheworld.tech']
 # ALLOWED_HOSTS = ['*']
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/derived_imgs/'
+# User provided settings -- my stuff
+# FILE_PATH_FIELD_DIRECTORY='/images'
+VAL_DIRECTORY = '/test/validation_imgs'
+MAX_SHORT_EDGE_THUMBNAIL = 150
+THUMBNAIL_DIR = 'thumbnails'
+
+THUMBNAIL_SIZE_TINY = (30, 30)
+THUMBNAIL_SIZE_SMALL = (100, 100)
+THUMBNAIL_SIZE_MEDIUM = (250, 250)
+THUMBNAIL_SIZE = (250, 250)
+THUMBNAIL_SIZE_BIG = (500, 500)
 
 # Application definition
 
@@ -52,10 +65,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'taggerProject.urls'
-
-# User provided settings -- my stuff
-# FILE_PATH_FIELD_DIRECTORY='/images'
-VAL_DIRECTORY = '/validation_imgs'
 
 
 TEMPLATES = [

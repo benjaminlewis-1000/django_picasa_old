@@ -105,19 +105,27 @@ class ImageFileTests(TestCase):
         allFiles = []
         for num in range(len(allObjects) ):
             # Double check that all files in the good directory are in the database.
-            filename = allObjects[num].filename
-            directory = allObjects[num].directory
-            expand_dir = directory.dir_path 
-            fullname = os.path.join(filename)
+            # filename = allObjects[num].filename
+            # directory = allObjects[num].directory
+            # expand_dir = directory.dir_path 
+            # print(directory.dir_path)
+            fullname = allObjects[num]._get_full_path()
             allFiles.append(fullname)
-
-            self.assertIs( allObjects[num].dateTakenValid, True )
+            # print("Object in database is : " + fullname)
+            # self.assertIs( allObjects[num].dateTakenValid, True )
 
         for eachGood in self.goodFiles:
-            self.assertIs(eachGood in allFiles, True)
+            # print(eachGood)
+            self.assertIs(eachGood in allFiles, True, 'File {} has a name that is valid but Django thinks is not.'.format(eachGood) )
 
         for eachBad in self.badFiles:
-            self.assertIs(eachBad in allFiles, False)
+            # print(eachBad)
+            self.assertIs(eachBad in allFiles, False, 'File {} has a name that Django thinks is valid but is not.'.format(eachGood))
+
+        # Clean up the thumbnails
+        for obj in allObjects:
+            obj.thumbnail.delete()
+
 
     def test_imfile_create(self):
 

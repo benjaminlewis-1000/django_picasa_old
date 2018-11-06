@@ -23,7 +23,8 @@ services:
     volumes:
       - .:/code
       - /mnt/data/samba_share/Photos:/images
-      - /mnt/data/samba_share/exclude/tagger_subset:/validation_imgs
+      - /mnt/data/samba_share/exclude/tagger_subset:/test/validation_imgs
+      - ${TAGGER_META_DIR}/thumbnails:/derived_imgs
 #    ports:
 #      - "8000:8000"
     expose:
@@ -31,7 +32,7 @@ services:
     depends_on:
     # The services that should be started before this one
       - db_django
-      - redis_django
+      - rabbit_django
     environment:
       - SECRET_KEY=changemeinprod
     labels:
@@ -42,13 +43,34 @@ services:
     networks:
       - traefik_default
 
-  redis_django:
-    restart: always
-    image: redis:latest
+#   redis_django:
+#     restart: always
+#     image: redis:latest
+#     expose:
+#       - "6379"
+#     networks:
+#       - traefik_default
+
+  rabbit_django: 
+    image: rabbitmq:3-management
+    hostname: "rabbit1"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+#    ports:
+#      - "15672:15672"
+#      - "5672:5672"
     expose:
-      - "6379"
-    networks:
-      - traefik_default
+      - 15672
+      - 5672
+    labels:
+      NAME: "rabbitmq1"
+    volumes:
+      - ${TAGGER_META_DIR}/rabbit/enabled_plugins:/etc/rabbitmq/enabled_plugins
+    #  - ${TAGGER_META_DIR}/rabbit/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+    #  - ${TAGGER_META_DIR}/rabbit/autocluster:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez
 
 networks:
   traefik_default:
