@@ -59,34 +59,49 @@ class ImageFile(models.Model):
     # Default for date added is now.
     isProcessed = models.BooleanField(default=False)
     orientation = models.IntegerField(default=-8008)
+
     # thumbnail = models.ImageField(upload_to = settings.THUMBNAIL_DIR, default = str(timezone.now) + '_thumbnail.jpg' )
 
-    def _get_full_path(self):
-        expand_dir = self.directory.dir_path
-        fullname = os.path.join(expand_dir, self.filename)
-        return fullname
-
-    # def _split_full_path_to_file_and_dir(self):
-    #     tmp_filepath = self.filename
-    #     self.filename = os.path.basename(os.path.normpath( tmp_filepath ) )
-    #     directory_of_file = os.path.dirname( os.path.normpath( tmp_filepath ) )
-    #     dir_key = create_or_get_directory(directory_of_file)
+    # def _get_full_path(self):
+    #     expand_dir = self.directory.dir_path
+    #     fullname = os.path.join(expand_dir, self.filename)
+    #     return fullname
 
 
-    def _process_new(self):
+
+
+    def process_new(self):
         # try:
         #     self.full_clean()
         # except ValidationError as ve:
         #     print(ve)
         # else:
         self._init_image()
+        self._get_dir()
         self._generate_md5_hash()
         self._generate_thumbnail()
         self._get_date_taken()
 
+
+    def _get_dir(self):
+        directory_of_file = os.path.dirname( os.path.normpath( self.filename ) )
+
+        try:
+            self.directory = Directory.objects.get (dir_path = directory_of_file)
+        except :
+            instance = Directory(dir_path = directory_of_file)
+            try:
+                instance.full_clean()
+            except ValidationError as ve:
+                print(ve)
+            else:
+                instance.save()
+
+            self.directory = Directory.objects.get(dir_path = directory_of_file)
+
     def _init_image(self):
-        self.full_path = os.path.join(self.directory.dir_path, self.filename)
-        self.image = PIL.Image.open(self.full_path)
+        # self.full_path = os.path.join(self.directory.dir_path, self.filename)
+        self.image = PIL.Image.open(self.filename)
         self.exifDict = {}
         info = self.image._getexif()
         for tag, value in info.items():
@@ -100,7 +115,7 @@ class ImageFile(models.Model):
     def _generate_md5_hash(self):
         hash_md5 = hashlib.md5()
         # self.full_path = os.path.join(directory.dir_path, filename)
-        with open(self.full_path, "rb") as f:
+        with open(self.filename, "rb") as f:
             for chunk in iter(lambda: f.read(4096), b""):
                 hash_md5.update(chunk)
         hash_md5.update(str(time.time()).encode('utf-8'))
@@ -167,5 +182,6 @@ class ImageFile(models.Model):
         # self.image.save(image_io_thumb, format="JPEG")
         self.thumbnail = ContentFile(image_io_thumb.getvalue())
         self.thumbnail.name = self.image_hash + '.jpg'
+        print("TODO: Thumbnails")
 
         image_io_thumb.close()

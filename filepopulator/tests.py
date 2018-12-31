@@ -25,9 +25,6 @@ class ImageFileTests(TestCase):
         self.test_dir = os.path.join('/code', 'test_imgs', 'naming')
         self.good_dir = os.path.join(self.test_dir, 'good')
         self.bad_dir = os.path.join(self.test_dir, 'bad')
-#        self.dir_prefix = '/images'
-#        self.dir_key = create_or_get_directory(self.dir_prefix)
-#        print(self.dir_key)
 
         self.goodFiles = []
         self.badFiles = []
@@ -47,30 +44,6 @@ class ImageFileTests(TestCase):
         self.badFiles.append(os.path.join('/images2', 'b.jpg'))
         self.badFiles.append(os.path.join('aaa', 'a.jpg'))
 
-#        file1 = os.path.join(self.dir_prefix, 'Pictures_finished/ben_young.jpg')
-#        file2 = os.path.join(self.dir_prefix, 'test2.jpeg')
-#        file3 = os.path.join(self.dir_prefix, 'asdf', 'bbk', 'test3.JPG')
-#        file4 = os.path.join(self.dir_prefix, 'asdf', 'bbk', 'test4.JPEG')
-
-#        self.goodFiles = [file1, file2, file3, file4]
-    
-#        d1 = Directory(dir_path=dir_prefix) 
-#        new_dir = d1.save(commit=False)
-#        new_dir.dir_path = self.dir_prefix
-#        new_dir.save()
-#        d1.save()
-#        dir_key = Directory.objects.get(dir_path=self.dir_prefix)
-#        print(dir_key.dir_path)
-#        print(dir(dir_key))
-
-#            f1 = ImageFileForm()
-#            new_file = f1.save(commit=False)
-#            new_file.filename=good
-#            new_file.width=width
-#            new_file.height=height
-#            new_file.directory=dir_key #Directory.objects.filter(dir_path==dir_prefix)
-#            new_file.save()
-
     def test_dir_create(self):
         key = create_or_get_directory(self.val_train)
         key2 = create_or_get_directory(self.val_train)
@@ -82,16 +55,6 @@ class ImageFileTests(TestCase):
         
         for good in self.goodFiles:
             create_image_file(good) #, -3, 3, self.dir_prefix)
-
-#            raw_file = os.path.basename(os.path.normpath( good ) )
-#            directory_of_file = os.path.dirname( os.path.normpath( good ) )
-#            dir_key = create_or_get_directory(directory_of_file)
-
-#             matchingObject = ImageFile.objects.filter(filename = good, directory = dir_key)
-#            self.assertIs( matchingObject.count(), 1)
-#            self.assertIs( matchingObject[0].dateTakenValid, True )
-        
-        # Get a list of files that are in the database
 
         for bad in self.badFiles:
             try:
@@ -109,7 +72,7 @@ class ImageFileTests(TestCase):
             # directory = allObjects[num].directory
             # expand_dir = directory.dir_path 
             # print(directory.dir_path)
-            fullname = allObjects[num]._get_full_path()
+            fullname = allObjects[num].filename
             allFiles.append(fullname)
             # print("Object in database is : " + fullname)
             # self.assertIs( allObjects[num].dateTakenValid, True )
@@ -125,7 +88,14 @@ class ImageFileTests(TestCase):
         # Clean up the thumbnails
         for obj in allObjects:
             obj.thumbnail.delete()
+            obj.delete()
 
+    def test_multiple_inputs(self):
+        goodFile = self.goodFiles[0]
+        create_image_file(goodFile)
+        create_image_file(goodFile)
+        print(goodFile)
+        print(ImageFile.objects.filter(filename = goodFile).count())
 
     def test_imfile_create(self):
 

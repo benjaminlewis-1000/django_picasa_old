@@ -63,12 +63,12 @@ def resize_image(PIL_img):
 def create_image_file(file_path):
 
     assert os.path.isfile(file_path)
-    filename_only = os.path.basename(os.path.normpath( file_path ) )
-    directory_of_file = os.path.dirname( os.path.normpath( file_path ) )
-    dir_key = create_or_get_directory(directory_of_file)
+    # filename_only = os.path.basename(os.path.normpath( file_path ) )
+    # directory_of_file = os.path.dirname( os.path.normpath( file_path ) )
+    # dir_key = create_or_get_directory(directory_of_file)
 
-    photo = ImageFile(filename = filename_only, directory = dir_key)
-    photo._process_new()
+    photo = ImageFile(filename = file_path) #
+    photo.process_new()
     # Need to correlate directory somehow...
 
     # image = Image.open(file_path)
@@ -139,11 +139,11 @@ def create_image_file(file_path):
     except ValidationError as ve:
         pass
         # print(ve)
-        # print("Did not add photo " + file_path)
+        print("Did not add photo " + file_path)
     else:
         photo.save()
 
-        # print("added photo " + file_path)
+        print("added photo " + file_path)
 
 #    if_form = ImageFileForm(instance=if_object)
  #   if_form.full_clean()
