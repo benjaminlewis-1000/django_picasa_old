@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<parameters>
+    <frontScaleFactor>1.2</frontScaleFactor>
+    <sideScaleFactor>1.2</sideScaleFactor>
+    <frontMinNeighbors>2</frontMinNeighbors>
+    <sideMinNeighbors>1</sideMinNeighbors>
+    <minFaceSizeScale>40</minFaceSizeScale>
+    <databaseFile>photobase.db</databaseFile>
+    <photoTable>
+        <name>photoTable</name>
+        <id_col>photoPrimaryKey</id_col>
+        <abs_path>photoAbsolutePath</abs_path>
+        <sent_to_MSFT>sentToMicrosoft</sent_to_MSFT>
+        <fully_processed>pictureFullyProcessed</fully_processed>
+        <orientationHash>orientationHash</orientationHash>
+    </photoTable>
+    <chipTable>
+        <name>chipTable</name>
+        <root_photo_col>keyOfRootPhoto</root_photo_col>
+        <chip_path>chipAbsolutePath</chip_path>
+        <chip_solved>chipSolved</chip_solved>
+        <chip_centerX>centerX</chip_centerX>
+        <chip_centerY>centerY</chip_centerY>
+        <chip_width>width</chip_width>
+        <chip_height>height</chip_height>
+        <face_vector>face_vector</face_vector>
+        <face_linked_key>faceLinkedKey</face_linked_key>
+        <potential_face_key_root>potentialFace</potential_face_key_root>
+        <num_potentials>5</num_potentials>
+    </chipTable>
+    <personNameTable>
+        <name>personTable</name>
+        <personPrimaryKey>primaryKeyID</personPrimaryKey>
+        <fullName>fullName</fullName>
+    </personNameTable>
+    <chipSaveParams>
+        <chipSaveDir>/tmp</chipSaveDir>
+        <storedChipPrefix>stored</storedChipPrefix>
+
+    </chipSaveParams>
+</parameters>

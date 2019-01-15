@@ -1,0 +1,29 @@
+
+# Install x11 development libraries
+
+sudo apt-get install libpthread-stubs0-dev libx11-dev libx11-doc libxau-dev libxcb1-dev libxdmcp-dev x11proto-core-dev x11proto-input-dev x11proto-kb-dev xorg-sgml-doctools xtrans-dev
+
+# Install CUDA
+( Don't remember exactly how right now )
+
+# Install cuDNN (appopriate version)
+- Download from NVIDIA
+- Move the cudnn.h to /usr/local/cuda/include
+- Move the lib64 components to /usr/local/cuda/lib64
+-
+
+# Download and make DLIB
+# Source: https://stackoverflow.com/questions/51697468/how-to-check-if-dlib-is-using-gpu-or-not/51698961
+# Watch for the message of whether DLIB will be made with CUDA or not.
+git clone https://github.com/davisking/dlib.git
+cd dlib
+mkdir build
+cd build
+cmake .. -DDLIB_USE_CUDA=1 -DUSE_AVX_INSTRUCTIONS=1
+cmake --build .
+cd ..
+python setup.py install --yes USE_AVX_INSTRUCTIONS --yes DLIB_USE_CUDA
+
+
+## Overall success is defined with opening python, importing dlib, and running:
+dlib.DLIB_USE_CUDA ## Should equal True.

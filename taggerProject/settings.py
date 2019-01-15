@@ -25,7 +25,7 @@ SECRET_KEY = 'zn8szz@pyb8s(#5%!tswcpz@e6%4((x5ra2a42ml63#3ljv9-a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False #True
 
-ALLOWED_HOSTS = ['tagger.exploretheworld.tech']
+ALLOWED_HOSTS = ['tagger.exploretheworld.tech', '127.0.0.1', 'localhost']
 # ALLOWED_HOSTS = ['*']
 
 MEDIA_URL = '/media/'

@@ -1,0 +1,63 @@
+version: '2'
+
+services:
+
+  db_django:
+    image: postgres:10.1-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+#      PGDATA: /database
+    volumes:
+      - /tmp/database:/var/lib/postgresql/data
+    labels:
+      - "user=postgres"
+
+  web_djangoapp:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+#     command: python3 /code/manage.py migrate --noinput
+    volumes:
+      - .:/code
+      - /tmp/django_photos:/images
+#      - /mnt/data/samba_share/exclude/tagger_subset:/test/validation_imgs
+      - /tmp/django_data/thumbnails:/derived_imgs
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    depends_on:
+    # The services that should be started before this one
+      - db_django
+      - rabbit_django
+    environment:
+      - SECRET_KEY=changemeinprod
+
+#   redis_django:
+#     restart: always
+#     image: redis:latest
+#     expose:
+#       - "6379"
+
+  rabbit_django: 
+    image: rabbitmq:3-management
+    hostname: "rabbit1"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+#    ports:
+#      - "15672:15672"
+#      - "5672:5672"
+    expose:
+      - 15672
+      - 5672
+    labels:
+      NAME: "rabbitmq1"
+    volumes:
+      - /tmp/django_data/rabbit/enabled_plugins:/etc/rabbitmq/enabled_plugins
+    #  - ${TAGGER_META_DIR}/rabbit/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+    #  - ${TAGGER_META_DIR}/rabbit/autocluster:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez
+
