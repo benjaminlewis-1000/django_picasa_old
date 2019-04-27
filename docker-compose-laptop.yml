@@ -4,25 +4,29 @@ services:
 
   db_django:
     image: postgres:10.1-alpine
+    env_file:
+      - .env_laptop
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
 #      PGDATA: /database
     volumes:
-      - /tmp/database:/var/lib/postgresql/data
+      - ${TAGGER_DB_DIR}/database:/var/lib/postgresql/data
     labels:
       - "user=postgres"
 
   web_djangoapp:
     build: .
+    env_file:
+      - .env_laptop
     command: python3 manage.py runserver 0.0.0.0:8000
 #     command: python3 /code/manage.py migrate --noinput
     volumes:
       - .:/code
-      - /tmp/django_photos:/images
+      - ${TAGGER_META_DIR}/django_photos:/images
 #      - /mnt/data/samba_share/exclude/tagger_subset:/test/validation_imgs
-      - /tmp/django_data/thumbnails:/derived_imgs
+      - ${TAGGER_META_DIR}/thumbnails:/derived_imgs
     ports:
       - "8000:8000"
     expose:
@@ -42,6 +46,8 @@ services:
 
   rabbit_django: 
     image: rabbitmq:3-management
+    env_file:
+      - .env_laptop
     hostname: "rabbit1"
     environment:
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
@@ -57,7 +63,7 @@ services:
     labels:
       NAME: "rabbitmq1"
     volumes:
-      - /tmp/django_data/rabbit/enabled_plugins:/etc/rabbitmq/enabled_plugins
+      - ${TAGGER_DB_DIR}/rabbit/enabled_plugins:/etc/rabbitmq/enabled_plugins
     #  - ${TAGGER_META_DIR}/rabbit/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
     #  - ${TAGGER_META_DIR}/rabbit/autocluster:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez
 
