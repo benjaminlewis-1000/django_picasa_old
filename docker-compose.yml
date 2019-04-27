@@ -13,6 +13,7 @@ services:
       - traefik_default
     volumes:
       - /mnt/data/appdata/tagger/database:/var/lib/postgresql/data
+      - ./app/database:/var/lib/postgresql/data
     labels:
       - "user=postgres"
 
@@ -24,15 +25,15 @@ services:
       - .:/code
       - /mnt/data/samba_share/Photos:/images
       - /mnt/data/samba_share/exclude/tagger_subset:/test/validation_imgs
-      - ${TAGGER_META_DIR}/thumbnails:/derived_imgs
-#    ports:
-#      - "8000:8000"
+   #   - ${TAGGER_META_DIR}/thumbnails:/derived_imgs
+    ports:
+      - "8000:8000"
     expose:
       - "8000"
     depends_on:
     # The services that should be started before this one
       - db_django
-      - rabbit_django
+      # - rabbit_django
     environment:
       - SECRET_KEY=changemeinprod
     labels:
@@ -51,24 +52,24 @@ services:
 #     networks:
 #       - traefik_default
 
-  rabbit_django: 
-    image: rabbitmq:3-management
-    hostname: "rabbit1"
-    environment:
-      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
-      RABBITMQ_DEFAULT_USER: "rabbitmq"
-      RABBITMQ_DEFAULT_PASS: "rabbitmq"
-      RABBITMQ_DEFAULT_VHOST: "/"
-#    ports:
-#      - "15672:15672"
-#      - "5672:5672"
-    expose:
-      - 15672
-      - 5672
-    labels:
-      NAME: "rabbitmq1"
-    volumes:
-      - ${TAGGER_META_DIR}/rabbit/enabled_plugins:/etc/rabbitmq/enabled_plugins
+#   rabbit_django: 
+#     image: rabbitmq:3-management
+#     hostname: "rabbit1"
+#     environment:
+#       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+#       RABBITMQ_DEFAULT_USER: "rabbitmq"
+#       RABBITMQ_DEFAULT_PASS: "rabbitmq"
+#       RABBITMQ_DEFAULT_VHOST: "/"
+# #    ports:
+# #      - "15672:15672"
+# #      - "5672:5672"
+#     expose:
+#       - 15672
+#       - 5672
+#     labels:
+#       NAME: "rabbitmq1"
+# #  volumes:
+     #  - ${TAGGER_META_DIR}/rabbit/enabled_plugins:/etc/rabbitmq/enabled_plugins
     #  - ${TAGGER_META_DIR}/rabbit/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
     #  - ${TAGGER_META_DIR}/rabbit/autocluster:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez
 
