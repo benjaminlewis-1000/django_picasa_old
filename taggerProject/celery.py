@@ -7,11 +7,11 @@ from django.conf import settings
 
 # Set the default Django settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'taggerProject.settings')
-app = Celery('taggerProject')
+app = Celery('taggerProject',broker = settings.CELERY_BROKER_URL)
 
-app.config_from_object('django.conf:settings')
+app.config_from_object('django.conf:settings', namespace='CELERY')
+
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
-
 
 @app.task(bind=True)
 def debug_task(self):

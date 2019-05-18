@@ -1,0 +1,373 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"po",
+				"poss_actions_list"
+			],
+			[
+				"para",
+				"params"
+			],
+			[
+				"cwac",
+				"clockwise_action"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "docker-compose-laptop.yml",
+			"settings":
+			{
+				"buffer_size": 1761,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"syntax: text",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"diff",
+				"Set Syntax: Diff"
+			],
+			[
+				"packag",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/benjamin/git_repos/photo_orienter/exif_rotate.py",
+		"/home/benjamin/git_repos/photo_orienter/tester.py",
+		"/home/benjamin/git_repos/django_picasa/filepopulator/jpg_extractor.py",
+		"/home/benjamin/git_repos/photo_orienter/orient_db.py",
+		"/home/benjamin/git_repos/photo_orienter/appendHashes.py",
+		"/home/benjamin/git_repos/photo_orienter/params.xml",
+		"/home/benjamin/git_repos/photo_orienter/populate.py",
+		"/home/benjamin/git_repos/photo_orienter/displayer.py",
+		"/home/benjamin/git_repos/django_picasa/docker-compose.yml",
+		"/home/benjamin/git_repos/django_picasa/taggerProject/settings.py",
+		"/home/benjamin/git_repos/django_picasa/filepopulator/tests.py",
+		"/home/benjamin/git_repos/photo_orienter/dev/photoLoadThreads.py",
+		"/home/benjamin/git_repos/photo_orienter/orient",
+		"/home/benjamin/git_repos/photo_orienter/tmp.py",
+		"/home/benjamin/pytorch_planning.txt",
+		"/home/benjamin/python_planning.txt",
+		"/home/benjamin/git_planning.txt",
+		"/home/benjamin/git_repos/sample2/tools/phInterp2.m",
+		"/home/benjamin/Desktop/HB03788.000",
+		"/home/benjamin/sensor_and_resource_management.txt",
+		"/home/benjamin/containers/pytorch-singularity/pytorch-gpu.def",
+		"/home/benjamin/containers/pytorch-singularity/pytorch92. All",
+		"/home/benjamin/git_repos/photo_orienter/dev/test_load_pics.py",
+		"/home/benjamin/git_repos/photo_orienter/test_load_pics.py"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"rotate_lo",
+			"advanceImage__",
+			"threadlist",
+			"delet",
+			"msg_q",
+			"'='",
+			"imgs",
+			"self.db_q",
+			"file, action,",
+			"self.none",
+			"action_non",
+			"self.none_actio",
+			"none_act",
+			"poss_actions",
+			"mark_rotat",
+			"advanceIm",
+			"db_q",
+			"current_img",
+			"mark",
+			"threadList",
+			"advanceI",
+			"previous_pa",
+			"add_from",
+			"net_action",
+			"mark_proce",
+			"db_q",
+			"]",
+			"print",
+			"list_of_files",
+			"next_files_q.put",
+			"os.stat(",
+			"join",
+			"stop_even",
+			".start",
+			"next_file",
+			"print",
+			"crop_img",
+			"hash_cw",
+			"50)",
+			"multi_test_dir",
+			"test_tworo",
+			"actual_te",
+			"__insert_records_bulk__",
+			"dd_from_r",
+			"update_db",
+			"print",
+			"c.exe",
+			"list_all",
+			"row_factory",
+			"self.conn",
+			"alignDatabase",
+			"conn = ",
+			"conn",
+			"fetchall",
+			",))\n",
+			"execute(",
+			"utf_pat",
+			"full_pa",
+			"list",
+			"poss_action",
+			"rotat",
+			"img_pixel",
+			"self.key",
+			"keylogger",
+			".stop",
+			"keylogger",
+			"stop_",
+			"stop_eve",
+			"exception",
+			"')\n",
+			"os.stat(fn",
+			"'x'",
+			"stop_even",
+			"esc",
+			"reviewed_col",
+			"tableMinder",
+			"argpars",
+			"print",
+			"branch",
+			"pip",
+			"-\n",
+			"cudnn-8.0-linux-x64-v6.0.tgz",
+			"cuda_8.0.61_375.26_linux.run",
+			"self.photo_tab",
+			"waitkey",
+			")\n",
+			"list_of_files",
+			"rotate_l",
+			"print",
+			"cv2.waitKey(50)",
+			"cv2.waitKey(5)",
+			"cv2.imsh",
+			"self.",
+			"keyLoggerDisplay",
+			"\t",
+			"Key.esc",
+			"self.poss",
+			"i % 4",
+			"imgs"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"MINSIZE)",
+			"cudnn-9.1-linux-x64-v7.1.tgz",
+			"cuda_9.1.85_387.26_linux.run",
+			"cv2.waitKey(150)",
+			"cv2.waitKey(50)",
+			"",
+			"testLoaderDisp",
+			"    ",
+			"i % self.num_files",
+			"self.list_of_files"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "docker-compose-laptop.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1761,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "django.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/git_repos/photo_orienter/orienter.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

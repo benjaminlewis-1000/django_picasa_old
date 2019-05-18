@@ -4,6 +4,10 @@ services:
 
   db_django:
     image: postgres:10.1-alpine
+    # expose: 
+    #   - '5432'
+    # ports:
+    #   - '5432'
     env_file:
       - .env_laptop
     restart: always
@@ -15,6 +19,8 @@ services:
       - ${TAGGER_DB_DIR}/database:/var/lib/postgresql/data
     labels:
       - "user=postgres"
+    # networks:
+    #   - test_default
 
   web_djangoapp:
     build: .
@@ -24,6 +30,7 @@ services:
 #     command: python3 /code/manage.py migrate --noinput
     volumes:
       - .:/code
+      # Need to make /images and /derived_images
       - ${TAGGER_META_DIR}/django_photos:/images
 #      - /mnt/data/samba_share/exclude/tagger_subset:/test/validation_imgs
       - ${TAGGER_META_DIR}/thumbnails:/derived_imgs
@@ -37,18 +44,24 @@ services:
       - rabbit_django
     environment:
       - SECRET_KEY=changemeinprod
+    environment:
+      WAIT_HOSTS: "db_django:5432"
+    # networks:
+    #   - test_default
 
-#   redis_django:
-#     restart: always
-#     image: redis:latest
-#     expose:
-#       - "6379"
+
+  # # # redis_django:
+  # # #   restart: always
+  # # #   image: redis:latest
+  # # #   expose:
+  # # #     - "6379"
 
   rabbit_django: 
     image: rabbitmq:3-management
     env_file:
       - .env_laptop
-    hostname: "rabbit1"
+    # hostname: "rabbit1"
+    user: root
     environment:
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
       RABBITMQ_DEFAULT_USER: "rabbitmq"
@@ -57,13 +70,22 @@ services:
 #    ports:
 #      - "15672:15672"
 #      - "5672:5672"
-    expose:
-      - 15672
-      - 5672
+    # expose:
+    #   - 15672
+    #   - 5672
     labels:
       NAME: "rabbitmq1"
     volumes:
       - ${TAGGER_DB_DIR}/rabbit/enabled_plugins:/etc/rabbitmq/enabled_plugins
-    #  - ${TAGGER_META_DIR}/rabbit/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
-    #  - ${TAGGER_META_DIR}/rabbit/autocluster:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez
+      - ${TAGGER_DB_DIR}/rabbit:/etc/rabbitmq
+    # networks:
+    #   - test_default
+    # # # # # - "./enabled_plugins:/etc/rabbitmq/enabled_plugins"
+    # # # #   # - ${TAGGER_META_DIR}/rabbit/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+    # # # #   # - ${TAGGER_META_DIR}/rabbit/autocluster:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez
+    # # # #   # - ${TAGGER_DB_DIR}/rabbit/:/etc/rabbitmq/
 
+
+# networks:
+#   test_default:
+#     external: true

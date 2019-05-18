@@ -21,4 +21,8 @@ WORKDIR /
 # Remove the apt-get update list
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get remove cmake -y
+
+RUN mkdir /images
+RUN mkdir /derived_imgs
+
 WORKDIR /code

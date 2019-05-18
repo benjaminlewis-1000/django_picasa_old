@@ -23,18 +23,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'zn8szz@pyb8s(#5%!tswcpz@e6%4((x5ra2a42ml63#3ljv9-a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['tagger.exploretheworld.tech', '127.0.0.1', 'localhost']
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/derived_imgs/'
 # User provided settings -- my stuff
-# FILE_PATH_FIELD_DIRECTORY='/images'
+SERVER_IMG_DIR='/images'
+CODE_DIR='/code'
 VAL_DIRECTORY = '/test/validation_imgs'
 MAX_SHORT_EDGE_THUMBNAIL = 150
 THUMBNAIL_DIR = 'thumbnails'
+
+CELERY_BROKER_URL="amqp://rabbitmq:rabbitmq@rabbit_django:5672"
 
 THUMBNAIL_SIZE_TINY = (30, 30)
 THUMBNAIL_SIZE_SMALL = (100, 100)

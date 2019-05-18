@@ -12,7 +12,7 @@ from datetime import datetime
 project_path = os.path.abspath(os.path.join(__file__,"../.."))
 script_path  = os.path.abspath(os.path.join(__file__,".."))
 
-print('Todo: Config file, eg for thumbnail sizes')
+print('Todo: Config file, e.g. for thumbnail sizes')
 
 class metadata_extractor():
     """docstring for JPEG_metadata"""
