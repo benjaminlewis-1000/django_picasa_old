@@ -3,6 +3,7 @@
 THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 source $THIS_DIR/.env_laptop
+rm -rf $TAGGER_DB_DIR
 
 mkdir -p $TAGGER_META_DIR
 mkdir -p $TAGGER_META_DIR/django_photos

@@ -24,5 +24,9 @@ RUN apt-get remove cmake -y
 
 RUN mkdir /images
 RUN mkdir /derived_imgs
+RUN mkdir /var/run/celery
+RUN mkdir /var/log/celery
+
+ENV DJANGO_SETTINGS_MODULE taggerProject.settings
 
 WORKDIR /code

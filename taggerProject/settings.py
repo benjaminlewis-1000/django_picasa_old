@@ -38,6 +38,10 @@ MAX_SHORT_EDGE_THUMBNAIL = 150
 THUMBNAIL_DIR = 'thumbnails'
 
 CELERY_BROKER_URL="amqp://rabbitmq:rabbitmq@rabbit_django:5672"
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'America/New_York'
 
 THUMBNAIL_SIZE_TINY = (30, 30)
 THUMBNAIL_SIZE_SMALL = (100, 100)
@@ -55,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'filepopulator.apps.FilepopulatorConfig',
+    # 'filepopulator',
 ]
 
 MIDDLEWARE = [

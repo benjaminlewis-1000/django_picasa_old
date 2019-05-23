@@ -26,7 +26,14 @@ services:
     build: .
     env_file:
       - .env_laptop
+    command: python3 manage.py migrate
     command: python3 manage.py runserver 0.0.0.0:8000
+    command: celery -A taggerProject worker -l info 
+    # Start celery workers
+    # command: /bin/sh -c "/usr/local/bin/python3 /code/manage.py runserver 0.0.0.0:8000 && \ 
+    #                      /usr/local/bin/celery multi start celWorkers -A taggerProject -l info \ 
+    #                      --pidfile=/var/run/celery/%n.pid \
+    #                      --logfile=/var/log/celery/%n%I.log"
 #     command: python3 /code/manage.py migrate --noinput
     volumes:
       - .:/code
@@ -49,6 +56,14 @@ services:
     # networks:
     #   - test_default
 
+
+  # celery:
+  #   build: .
+  #   volumes:
+  #     - .:/code
+  #   depends_on:
+  #     - db_django
+  #     - rabbit_django
 
   # # # redis_django:
   # # #   restart: always
