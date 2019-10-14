@@ -12,6 +12,8 @@ mkdir -p $TAGGER_DB_DIR
 mkdir -p $TAGGER_DB_DIR/database
 mkdir -p $TAGGER_DB_DIR/rabbit
 
+cp -R $THIS_DIR/test_imgs/* $TAGGER_META_DIR/django_photos
+
 sudo chown -R 1000:1000 $TAGGER_META_DIR
 sudo chown -R 1000:1000 $TAGGER_DB_DIR
 chmod 777 $TAGGER_DB_DIR/rabbit

@@ -5,6 +5,8 @@ import os
 from celery import Celery
 from django.conf import settings
 
+from celery.schedules import crontab
+
 # This file explained well on https://docs.celeryproject.org/en/latest/django/first-steps-with-django.html 
 
 # if not settings.configured:
@@ -40,6 +42,14 @@ print('tasks')
 @app.task(bind=True)
 def debug_task(self):
     print('Request: {0!r}'.format(self.request) )
+
+app.conf.beat_schedule = {
+    'log_time': {
+        'task': 'filepopulator.tasks.log_time',
+        'schedule': 30.0#,
+        # 'args': (16, 16)
+    },
+}
 
 # Optional configuration, see the application user guide.
 app.conf.update(

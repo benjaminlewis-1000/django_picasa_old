@@ -11,8 +11,10 @@ import os
 if not settings.configured:
     settings.configure()
 
-
-@shared_task
+# If you don’t care about the results of a task, be sure to set the ignore_result option, as storing results wastes time and resources.
+@shared_task(ignore_result=True)
+# from django.db import transaction
+# @transaction.commit_on_success
 #(name='filepopulator.load_images_into_db')
 def load_images_into_db():
     base_directory = settings.SERVER_IMG_DIR
@@ -39,3 +41,11 @@ def mul(x, y):
 @shared_task#(name='filepopulator.xsum')
 def xsum(numbers):
     return sum(numbers)
+
+from datetime import datetime as dt
+@shared_task#(name='filepopulator.xsum')
+def log_time():
+    string = 'Current time: {}'.format(dt.now())
+    with open(os.path.join(settings.CODE_DIR, 'timelog.log'), 'a') as fh:
+        print(string, file=fh)
+

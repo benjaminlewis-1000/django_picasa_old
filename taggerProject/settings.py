@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'filepopulator.apps.FilepopulatorConfig',
+    # https://www.vinta.com.br/blog/2017/how-make-sure-celery-beat-tasks-are-working/ -- celerybeat status
+    'celerybeat_status'
     # 'filepopulator',
 ]
 
@@ -152,7 +154,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
